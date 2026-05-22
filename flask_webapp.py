@@ -28,6 +28,11 @@ def mul():
 
     return st
 
+@app.route('/ccc')
+def mul():
+    str = "Hello World Dhana"
+    return str
+
 
 @app.route('/aaa')
 def hello_world():
