@@ -4,22 +4,23 @@ app = Flask(__name__)
 
 def mylist():
         st=" "
-        for tums in (range(1,6)):
+        for tums in (range(1,11)):
             print (tums)
             st+=str(tums)+ "<br>"
         return "<h1>" + str(st) + "</h1>"           
 
-@app.route('/', methods = ['POST','GET'])
+@app.route('/', methods=['POST','GET'])
 def home():
-   ## str = "Hello World"
-    a=mylist()
-    user = request.args.get('uname')
-    print("name: ",user)
+    a = mylist()
+    if request.method == 'POST':
+        user = request.form.get('uname')
+    else:
+        user = request.args.get('uname')
+    print("name:", user)
     return a
 
 @app.route('/bbb')
-def mul():
-   ## str = "Hello World"
+def multiplication_table():
     st = ""
 
     for tums in range(1, 6):      
@@ -29,9 +30,9 @@ def mul():
     return st
 
 @app.route('/ccc')
-def mul():
-    str = "Hello World Dhana"
-    return str
+def hello_dhana():
+    message = "Hello World Dhana"
+    return message
 
 
 @app.route('/aaa')
