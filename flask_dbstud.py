@@ -10,6 +10,31 @@ mydb = mysql.connector.connect(
 )
 mycursor = mydb.cursor()
 
+@app.route('/')
+def login():
+
+    uname = request.args.get("uname")
+    psw = request.args.get("psw")
+
+    ##mycursor = mydb.cursor()
+
+    sql = "SELECT * FROM students WHERE Name=%s AND City=%s"
+
+    values = (uname, psw)
+
+    mycursor.execute(sql, values)
+
+    result = mycursor.fetchone()
+
+    mycursor.close()
+
+    if result:
+        return "Student is in Database"
+    else:
+        return "Student Not Found"
+
+
+
 @app.route('/students')
 def stu():
     mycursor.execute("select * from students")
@@ -32,7 +57,7 @@ def tea():
     results = mycursor.fetchall()
     st = " "
     for row in results:
-        line=str(row[0]) + " " + str(row[1]) + " " + str(row[2]) + "<br>"
+        line=str(row[0]) +  " " + str(row[1]) + " " + str(row[2]) + "<br>"
         st += line
         print(st)
     mycursor.close()

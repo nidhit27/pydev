@@ -1,0 +1,36 @@
+<html>
+ 
+<head>
+    <title>Login Form</title>
+    <script lang="javascript">
+        function test(){
+            var k = document.forms.f1.uname.value;
+            var len = k.length;
+            alert(k+" " + len)
+            document.forms.f1.psw.value = "Nidhi";
+            if (len<1)
+                return false;
+            else 
+                return true;
+        }
+    </script>
+</head>
+<body>
+    <form id="f1" method="GET" action="http://192.168.1.172:5000">
+    <br><br><br><br><br><br><center>
+    <label for="un"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="uname">
+    <br>
+    <br>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw">
+    <br>
+    <br>
+    <button type="submit" onclick="return test()"> Submit </button>
+    <br>
+    <br>
+    </center>
+    </form>
+    
+</body>
+</html>
