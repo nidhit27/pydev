@@ -16,23 +16,20 @@ def login():
     uname = request.args.get("uname")
     psw = request.args.get("psw")
 
-    ##mycursor = mydb.cursor()
-
-    sql = "SELECT * FROM students WHERE Name=%s AND City=%s"
-
-    values = (uname, psw)
-
-    mycursor.execute(sql, values)
+    mycursor.execute("SELECT * FROM students WHERE Name=%s AND City=%s", (uname, psw))
+    print("completed runnning")
 
     result = mycursor.fetchone()
 
-    mycursor.close()
+    
 
     if result:
+        mycursor.close()
         return "Student is in Database"
     else:
+        mycursor.close()    
         return "Student Not Found"
-
+   
 
 
 @app.route('/students')
